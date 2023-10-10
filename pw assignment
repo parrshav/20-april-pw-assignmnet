@@ -1,0 +1,223 @@
+KNN-1
+Assignment Questions 
+Assignment 
+Q1. What is the KNN algorithm? 
+K-Nearest Neighbors (KNN) is a simple, instance-based, and versatile machine learning algorithm used for both classification and regression tasks. It's often considered a lazy learning algorithm because it doesn't involve a separate training phase. Instead, it stores the entire training dataset in memory and makes predictions based on the proximity of data points.
+Here's how the KNN algorithm works:
+Initialization:
+Choose the number of neighbors
+k (an integer) to consider for making predictions.
+Training:
+In KNN, there is no explicit training phase since the model stores the entire training dataset.
+Prediction (Classification):
+For a new data point, find the
+k training examples (neighbors) that are closest to the data point in feature space. The proximity is often measured using Euclidean distance, but other distance metrics can also be used.
+Determine the majority class among these
+k neighbors.
+Assign the new data point to the majority class as the predicted class label.
+Prediction (Regression):
+For regression tasks, instead of assigning the majority class, calculate the mean or median of the
+k neighbors' target values.
+Assign this mean or median as the predicted target value for the new data point.
+
+
+Q2. How do you choose the value of K in KNN? 
+Start with a Small
+k: Begin by trying small values of
+k such as 1 or 3. Small values of
+k tend to capture local patterns in the data.
+Use Odd Values for Binary Classification: If you're working on a binary classification problem, it's often a good practice to use odd values for
+k to avoid ties when determining the majority class.
+Use Cross-Validation: Implement cross-validation to evaluate the model's performance for different
+k values. Train the KNN model using various
+k values and assess the model's accuracy using cross-validation. Choose the
+k that yields the best performance.
+Plot Accuracy vs.
+k: Pot the accuracy or error rate of the KNN model against different
+k values. This will give you insight into how the choice of
+k affects the model's performanc
+Grid Search: Perform a grid search over a range of
+k values and use cross-validation to evaluate each
+k. Select the
+k that provides the best performance.
+Domain Knowledge: Consider domain-specific knowledge or prior understanding of the problem. Certain domains may have inherent characteristics that suggest a particular range of
+k values.
+Experiment and Iterate: Experiment with different
+k vales, observe how the model performs, and iterate this process to refine the choice of
+k. Be open to adjusting
+k based on model evaluation results.
+
+Q3. What is the difference between KNN classifier and KNN regressor? 
+KNN Classifier:
+KNN classifier is used for classification tasks where the goal is to predict the class or category of a new data point based on the majority class of its
+k nearest neighbors.
+The output of a KNN classifier is a categorical label. For each new data point, the algorithm determines the majority class among its
+k nearest neighbors and assigns that class as the predicted label.
+KNN Regressor:
+KNN regressor is used for regression tasks where the goal is to predict a continuous numerical value for a new data point based on the average (or another aggregation) of the target values of its
+k nearest neighbors.
+The output of a KNN regressor is a numerical value. For each new data point, the algorithm calculates the mean (or another aggregation) of the target values of its
+k nearest neighbors and assigns that as the predicted numerical value.
+
+Q4. How do you measure the performance of KNN? 
+For KNN Classification:
+Accuracy: Accuracy is the proportion of correctly classified instances out of the total instances. It's a common metric for classification problems.
+Precision, Recall, and F1-Score: These metrics are especially useful for imbalanced datasets.
+Precision: The proportion of true positive predictions among all positive predictions.
+Recall: The proportion of true positive predictions among all actual positives.
+F1-Score: The harmonic mean of precision and recall, providing a balance between the two.
+Confusion Matrix: A table that presents a summary of the model's performance showing true positives, true negatives, false positives, and false negatives.
+or KNN Regression:
+Mean Absolute Error (MAE): The average of the absolute differences between predicted and actual values.
+
+Mean Squared Error (MSE): The average of the squared differences between predicted and actual values.
+Root Mean Squared Error (RMSE): The square root of the MSE, providing the error in the same units as the target variable.
+R-squared (R²): Measures the proportion of variance in the dependent variable that is predictable from the independent variables.
+Q5. What is the curse of dimensionality in KNN? 
+Increased Distance Sparsity: As the number of dimensions increases, the data points become increasingly sparse in the space. The majority of the data points are far away from any given point, and the notion of proximity or closeness becomes less meaningful.
+Increased Computational Complexity: Calculating distances (e.g., Euclidean distance) between data points becomes computationally intensive in high-dimensional spaces. This is a significant concern in KNN, which relies on distance calculations to determine neighbors.
+Degraded Performance of Distance-Based Algorithms: In high-dimensional spaces, the differences in distances between the nearest and farthest neighbors tend to diminish. This makes it difficult for algorithms like KNN to accurately determine nearest neighbors and can lead to deteriorated performance.
+Overfitting and Increased Sensitivity: In high-dimensional spaces, models can more easily overfit the training data, as there's a higher likelihood of finding patterns that are specific to the training data but don't generalize well to unseen data.
+Data Sparsity and Generalization Challenges: The amount of data required to adequately cover the high-dimensional space increases exponentially with the number of dimensions. As a result, obtaining representative and sufficient training data becomes impractical in many real-world scenarios.
+Increased Model Complexity: With a higher number of features, the complexity of the model needed to accurately represent the data often increases. This can lead to models that are difficult to interpret and may suffer from the "curse of dimensionality" issues.
+
+Q6. How do you handle missing values in KNN? 
+Imputation with Mean, Median, or Mode: Replace missing values with the mean, median, or mode of the respective feature. This is a simple and quick way to fill in missing values but may not capture the underlying distribution accurately.
+Imputation using KNN: Utilize a KNN-based imputation method where missing values for a particular feature are imputed using the values from the
+k nearest neighbors in the feature space. The algorithm calculates distances and uses the values from the nearest neighbors to fill in the missing values.
+Imputation with Weighted KNN: When using KNN for imputation, weight the contributions of neighboring points based on their distances. Closer neighbors have higher weights, and their values contribute more to the imputation.
+Feature Engineering: Include an additional binary feature indicating whether a value is missing for a particular feature. This allows KNN to consider the missingness as an informative feature during the distance calculation.
+Q7. Compare and contrast the performance of the KNN classifier and regressor. Which one is better for  which type of problem? 
+Comparing and contrasting the performance of K-Nearest Neighbors (KNN) classifier and regressor involves understanding their strengths, weaknesses, and suitability for specific problem types:
+KNN Classifier:
+Objective: Predicts the class label or category of a new data point based on the majority class of its
+k neaest neighbors.
+Output: Categorical class labels.
+Evaluation Metrics:
+Accuracy, precision, recall, F1-score, confusion matrix, ROC-AUC, PR-AUC, kappa score.
+Use Cases:
+Classification problems where the goal is to assign data points to discrete categories or classes.
+Applications like image recognition, sentiment analysis, spam detection, and disease diagnosis.
+Strengths:
+Intuitive and easy to implement.
+Non-parametric and doesn't make assumptions about the data distribution.
+Can handle multi-class classification.
+Weaknesses:
+Sensitive to the choice of
+k and distance metric.
+Computationally intensive for large datasets or high-dimensional feature spaces.
+Performs poorly with imbalanced datasets.
+KNN Regressor:
+Objective: Predicts a continuous numerical value for a new data point based on the mean (or other aggregation) of its
+k nearest neighbors' target values.
+Output: Numerical values.
+Evaluation Metrics:
+Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), R-squared (R²).
+Use Cases:
+Regression problems where the goal is to predict numerical values or quantities.
+Applications like house price prediction, sales forecasting, and demand prediction.
+Strengths:
+Simple and easy to understand.
+Non-parametric and doesn't assume a particular data distribution.
+Effective for capturing local patterns in the data.
+Weaknesses:
+Sensitive to the choice of
+k and distance metric.
+Prone to outliers and noise, which can affect predictions.
+May not perform well if the target variable has a complex relationship with the features.
+Choosing Between KNN Classifier and Regressor:
+Use KNN Classifier when the problem involves assigning data points to specific categories or classes, and the output is d
+
+Q8. What are the strengths and weaknesses of the KNN algorithm for classification and regression tasks,  and how can these be addressed? 
+K-Nearest Neighbors (KNN) is a versatile algorithm used for both classification and regression tasks. Let's discuss the strengths and weaknesses for each task, and potential ways to address them:
+KNN for Classification:
+Strengths:
+Intuitive and Easy to Implement:
+KNN is straightforward to understand and implement, making it accessible for beginners.
+Non-Parametric:
+KNN is a non-parametric algorithm, meaning it doesn't make assumptions about the underlying data distribution.
+Adaptable to Changes:
+KNN can adapt to new data patterns as they emerge, making it suitable for dynamic or evolving datasets.
+Can Handle Multiclass Classification:
+KNN naturally extends to multiclass classification problems.
+Weaknesses:
+Sensitive to Distance Metric and
+k Value:
+The algorithm's performance can vary significantly based on the distance metric used and the choice of
+k. Optimal parameters are crucial for good performance.
+Computationally Intensive:
+Calculating distances between the data points is computationally expensive, especially for large datasets.
+Imbalanced Data:
+KNN can be biased towards the majority class in imbalanced datasets, leading to poor performance for minority classes.
+Curse of Dimensionality:
+KNN performance deteriorates as the number of features (dimensions) increases due to the "curse of dimensionality."
+Addressing Weaknesses:
+Distance Metric Selection:
+Experiment with different distance metrics (e.g., Euclidean, Manhattan, Minkowski) to find the most suitable one for the dataset.
+Optimal
+k Selection:
+Use techniques like cross-validation or grid search to find the optimal
+k value.
+Distance Weighting:
+Apply distance weighting to give more importance to closer neighbors during classification.
+Data Preprocessing:
+Standardize or normalize features to ensure all features contribute equally to the distance calculation.
+Dimensionality Reduction:
+Use dimensionality reduction techniques (e.g., PCA) to reduce the number of features and mitigate the curse of dimensionality.
+KNN for Regression:
+Strengths:
+Simple and Intuitive:
+KNN regression is easy to understand and implement, making it suitable for quick analysis.
+Adapts to Local Patterns:
+KNN can capture local patterns and variations in the data, making it effective for certain regression tasks.
+Weaknesses:
+Sensitive to Distance Metric and
+k Value:
+Similar to classification, KNN regression is sensitive to the choice of distance metric and
+k, which can affect the quality of predictions.
+Outliers and Noise:
+KNN is sensitive to outliers and noisy data, leading to potentially skewed predictions.
+Local Optima:
+KNN tends to converge towards local optima, potentially missing the global optimum.
+Addressing Weaknesses:
+Distance Metric and
+k Value:
+Experiment and optimize the choice of distance metric and
+k value to improve model performance.
+Outlier Detection and Handling:
+Implement outlier detection and robust preprocessing techniques to handle outliers and reduce their impact on predictions.
+Smoothing Techniques:
+Apply smoothing techniques like local averaging or kernel regression to mitigate the effects of noise and local optima.
+
+Q9. What is the difference between Euclidean distance and Manhattan distance in KNN?
+Shape of Distance Paths:
+Euclidean Distance:
+Euclidean distance follows a diagonal or direct path between two points, forming a straight line.
+Manhattan Distance:
+Manhattan distance follows a path that moves along the grid lines, similar to the path a car would take when traveling in a city grid.
+Sensitivity to Dimensions:
+Euclidean Distance:
+Euclidean distance is sensitive to differences in all dimensions and tends to be larger when dimensions have large differences.
+Manhattan Distance:
+Manhattan distance is less sensitive to differences in individual dimensions, and it's mainly influenced by the sum of absolute differences.
+Applications:
+Euclidean Distance:
+Commonly used in scenarios where straight-line proximity is meaningful, such as geometric and continuous data.
+Manhattan Distance:
+Often used when movement is restricted to grid-based paths or when dimensions have different units (e.g., time, distance).
+
+ Q10. What is the role of feature scaling in KNN? 
+Euclidean or Manhattan distance, to find the closest data points, so ensuring that features are on a similar scale is essential. Here's how feature scaling impacts KNN:
+Equal Contribution of Features:
+Without scaling, features with larger numerical ranges or units could dominate the distance calculations. For example, a feature measuring height (in meters) might have a larger numerical range than a feature measuring age (in years). Scaling ensures that each feature contributes proportionally to the overall distance.
+Improves Distance Calculation:
+Scaling ensures that the distances between data points are determined by the relative differences in the features, rather than the absolute differences. This is crucial for KNN as it aims to identify the nearest neighbors based on these distances.
+Prevents Biased Results:
+Without scaling, features with larger magnitudes might overshadow the influence of smaller magnitude features, potentially leading to biased results in favor of the larger magnitude features.
+Enhances Model Performance:
+Scaling can improve the performance of the KNN model by providing more accurate distance calculations, which is fundamental to the correct identification of nearest neighbors and the subsequent classification or regression.
+Uniform Convergence:
+Scaling allows the algorithm to converge uniformly and ensures that the behavior of the KNN model is consistent regardless of the feature units and ranges.
+
+Note:  Create your assignment in Jupyter notebook and upload it to GitHub & share that github repository  link through your dashboard. Make sure the repository is public.
+Data Science Masters 
